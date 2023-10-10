@@ -1,4 +1,5 @@
 from __future__ import annotations
+
 # built-in
 from functools import reduce
 from itertools import islice, permutations, repeat
@@ -122,7 +123,7 @@ class Tversky(_BaseSimilarity):
         sequences = [self._count_counters(s) for s in sequences]  # ints
         ks = list(islice(self.ks, len(sequences)))
 
-        if len(sequences) == 2 or self.bias is None:
+        if len(sequences) != 2 or self.bias is None:
             result = intersection
             for k, s in zip(ks, sequences):
                 result += k * (s - intersection)
